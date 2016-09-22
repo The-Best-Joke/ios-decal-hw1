@@ -22,7 +22,10 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [No. The variables passed in to the **init** function are optionals, in that they can be both Strings and possibly nil. The instantiated variables on the other hand do not have this optional capacity: They are strings, full stop.]
+//: [No. The variables passed in to the **init** function are optionals, in that they can 
+be both Strings and possibly nil. The instantiated variables on the other hand do not have 
+this optional capacity: They are strongly referenced strings, not weak referenced like passed
+variables.]
 
 
 //: ## Q2: Variable Types and Function Types
@@ -42,7 +45,11 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [The function was originially defined as a dynamic function, meaning that in order to be called, it could only do so from an instantiated object from the Word class. Changing to **class func** fixed this issue. Another mistake was that the logic of the algorithm made it so the expected boolean value of the function could potentially not be returned depending on the inputs. This was fixed by adding a **return true** at the bottom.]
+//: [The function was originially defined as a dynamic function, meaning that in order 
+to be called, it could only do so from an instantiated object from the Word class. 
+Changing to **class func** fixed this issue. Another mistake was that the logic of 
+the algorithm made it so the expected boolean value of the function could potentially 
+not be returned depending on the inputs. This was fixed by adding a **return true** at the bottom.]
 
 
 //: ## Q3: More Functions and Object Initialization
@@ -90,7 +97,12 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [The problem with the way countLetters was being created in Line X and then called on Line Y is that countLetters was not instantiated in Line X, it was only defined, ergo, the compiler would raise complaints when Line Y calls for a nonexistent variable. Furthermore, the problem with isAnagram was the opposite problem with arePalindrome: The function was being used as a dynamic function, when the function was defined as a static one. Changing the function to simply **func** fixed this issue.]
+//: [The problem with the way countLetters was being created in Line X and then called 
+on Line Y is that countLetters was not instantiated in Line X, it was only defined, ergo, 
+the compiler would raise complaints when Line Y calls for a nonexistent variable. Furthermore, 
+the problem with isAnagram was the opposite problem with arePalindrome: The function was being 
+used as a dynamic function, when the function was defined as a static one. Changing the 
+function to simply **func** fixed this issue.]
     
     
 }
