@@ -22,31 +22,32 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [No. The variables passed in to the **init** function are optionals, in that they can be both Strings and possibly nil. The instantiated variables on the other hand do not have this optional capacity: They are strings, full stop.]
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(_ words: [String]) -> Bool {
+    class func arePalindromes(_ words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reversed())}
         let numElements = words.count
         
-        for i in 0 ..< numElements {
+        for i in (0 ..< numElements) {
             if words[i] != reversedWords[i] {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [The function was originially defined as a dynamic function, meaning that in order to be called, it could only do so from an instantiated object from the Word class. Changing to **class func** fixed this issue. Another mistake was that the logic of the algorithm made it so the expected boolean value of the function could potentially not be returned depending on the inputs. This was fixed by adding a **return true** at the bottom.]
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
+    func isAnagram() -> Bool {
+        var countLetters = [Character : Int]() //Line X
         var lenA = self.wordA.characters.count
         var lenB = self.wordB.characters.count
         
@@ -81,7 +82,7 @@ class Words {
             }
         }
         
-        return nil
+        return false
     }
 //: ### What is the problem with declaring **countLetters** as we do in **Line X**,
 //: ### and then using it in **Line Y**? Fix it (by only changing **Line X**).
@@ -89,7 +90,7 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [The problem with the way countLetters was being created in Line X and then called on Line Y is that countLetters was not instantiated in Line X, it was only defined, ergo, the compiler would raise complaints when Line Y calls for a nonexistent variable. Furthermore, the problem with isAnagram was the opposite problem with arePalindrome: The function was being used as a dynamic function, when the function was defined as a static one. Changing the function to simply **func** fixed this issue.]
     
     
 }
